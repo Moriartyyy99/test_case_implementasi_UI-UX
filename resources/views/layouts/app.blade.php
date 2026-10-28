@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexxManage - Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    <!-- Script Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="bg-[#F3F4F6] font-sans antialiased text-gray-800">
@@ -39,8 +42,8 @@
                         <span class="mr-3">📁</span> Projects
                     </a>
 
-                    <a href="#"
-                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition text-gray-300 hover:bg-white/10 hover:text-white">
+                    <a href="{{ route('orders') }}"
+                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition {{ request()->routeIs('orders') ? 'bg-white text-[#2D1B69]' : 'text-gray-300 hover:bg-white/10 hover:text-white' }}">
                         <span class="mr-3">🛒</span> Orders
                     </a>
 
@@ -49,8 +52,8 @@
                         <span class="mr-3">📋</span> Tasks
                     </a>
 
-                    <a href="#"
-                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition text-gray-300 hover:bg-white/10 hover:text-white">
+                    <a href="{{ route('customers') }}"
+                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition {{ request()->routeIs('customers') ? 'bg-white text-[#2D1B69]' : 'text-gray-300 hover:bg-white/10 hover:text-white' }}">
                         <span class="mr-3">👤</span> Customers
                     </a>
                 </div>
@@ -59,19 +62,19 @@
                 <div class="space-y-1">
                     <p class="px-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 mt-4">Financial</p>
 
-                    <a href="#"
-                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition text-gray-300 hover:bg-white/10 hover:text-white">
+                    <a href="{{ route('finance') }}"
+                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition {{ request()->routeIs('finance') ? 'bg-white text-[#2D1B69]' : 'text-gray-300 hover:bg-white/10 hover:text-white' }}">
                         <span class="mr-3">💳</span> Finance
                     </a>
 
-                    <a href="#"
-                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition text-gray-300 hover:bg-white/10 hover:text-white">
+                    <a href="{{ route('reports') }}"
+                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition {{ request()->routeIs('reports') ? 'bg-white text-[#2D1B69]' : 'text-gray-300 hover:bg-white/10 hover:text-white' }}">
                         <span class="mr-3">📈</span> Reports
                     </a>
 
-                    <a href="#"
-                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition text-gray-300 hover:bg-white/10 hover:text-white">
-                        <span class="mr-3">💵</span> Expenses
+                    <a href="{{ route('expenses') }}"
+                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition {{ request()->routeIs('expenses') ? 'bg-white text-[#2D1B69]' : 'text-gray-300 hover:bg-white/10 hover:text-white' }}">
+                        <span class="mr-3">🧾</span> Expenses
                     </a>
                 </div>
 
@@ -80,23 +83,23 @@
                     <p class="px-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 mt-4">
                         Administration</p>
 
-                    <a href="#"
-                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition text-gray-300 hover:bg-white/10 hover:text-white">
+                    <a href="{{ route('users') }}"
+                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition {{ request()->routeIs('users') ? 'bg-white text-[#2D1B69]' : 'text-gray-300 hover:bg-white/10 hover:text-white' }}">
                         <span class="mr-3">👥</span> Users
                     </a>
 
-                    <a href="#"
-                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition text-gray-300 hover:bg-white/10 hover:text-white">
+                    <a href="{{ route('roles') }}"
+                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition {{ request()->routeIs('roles') ? 'bg-white text-[#2D1B69]' : 'text-gray-300 hover:bg-white/10 hover:text-white' }}">
                         <span class="mr-3">🛡️</span> Roles & Permissions
                     </a>
 
-                    <a href="#"
-                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition text-gray-300 hover:bg-white/10 hover:text-white">
+                    <a href="{{ route('staff') }}"
+                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition {{ request()->routeIs('staff') ? 'bg-white text-[#2D1B69]' : 'text-gray-300 hover:bg-white/10 hover:text-white' }}">
                         <span class="mr-3">🧑‍💼</span> Staff
                     </a>
 
-                    <a href="#"
-                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition text-gray-300 hover:bg-white/10 hover:text-white">
+                    <a href="{{ route('logactivity') }}"
+                        class="flex items-center px-4 py-2.5 rounded-lg font-bold text-sm transition {{ request()->routeIs('logactivity') ? 'bg-white text-[#2D1B69]' : 'text-gray-300 hover:bg-white/10 hover:text-white' }}">
                         <span class="mr-3">🕒</span> Log Activity
                     </a>
                 </div>
@@ -124,23 +127,35 @@
                         <span class="text-gray-900">
                             @if (request()->routeIs('projects'))
                                 Projects
+                            @elseif(request()->routeIs('orders'))
+                                Orders
                             @elseif(request()->routeIs('tasks'))
                                 Tasks
-                            @elseif(request()->routeIs('users'))
-                                <!-- Antisipasi kalau nanti ada halaman users -->
-                                Users
+                            @elseif(request()->routeIs('customers'))
+                                Customers
                             @elseif(request()->routeIs('finance'))
-                                <!-- Antisipasi kalau nanti ada halaman finance -->
                                 Finance
+                            @elseif(request()->routeIs('reports'))
+                                Reports
+                            @elseif(request()->routeIs('expenses'))
+                                Expenses
+                            @elseif(request()->routeIs('users'))
+                                Users
+                            @elseif(request()->routeIs('roles'))
+                                Roles & Permissions
+                            @elseif(request()->routeIs('staff'))
+                                Staff
+                            @elseif(request()->routeIs('logactivity'))
+                                Log Activity
                             @else
-                                {{ ucfirst(request()->path()) }} <!-- Fallback otomatis -->
+                                {{ ucfirst(request()->path()) }}
                             @endif
                         </span>
                     @endif
                 </div>
 
                 <!-- Bagian Kanan: Search & Profile -->
-                <div class="flex items-center space-x-6 pr-4"> <!-- pr-4 memberi jarak ke kanan -->
+                <div class="flex items-center space-x-6 pr-4">
 
                     <!-- Search Bar -->
                     <div class="relative hidden sm:block">
@@ -162,8 +177,7 @@
 
                             <!-- Nama & Role -->
                             <div class="hidden md:block text-left">
-                                <p class="text-sm font-semibold text-gray-800 leading-tight">{{ Auth::user()->name }}
-                                </p>
+                                <p class="text-sm font-semibold text-gray-800 leading-tight">{{ Auth::user()->name }}</p>
                                 <p class="text-xs text-gray-500 leading-tight">Owner</p>
                             </div>
 
