@@ -9,6 +9,11 @@ Manager	 Siti Amanada	 manager@gmail.com	  manager123
 Finance	 Rina Marliana	 finance@gmail.com	  finance123
 Staff	 Andi Rahman	 staff@gmail.com	  staff123
 
+atau bisa juga mengubah URL
+dashboard?role=owner
+dashboard?role=manager
+dashboard?role=finance
+dashboard?role=staff
 
 Akun tersebut hanya ditujukan untuk evaluasi lokal, bukan deployment publik atau penggunaan produksi. Pastikan akun sudah dibuat melalui seeder pada database hasil instalasi baru.
 Gambaran Modul
