@@ -28,7 +28,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Ambil role dari user yang sedang login
+        $role = Auth::user()->role ?? 'owner';
+
+        // Redirect ke dashboard dengan parameter role
+        return redirect()->intended(route('dashboard', ['role' => $role]));
     }
 
     /**

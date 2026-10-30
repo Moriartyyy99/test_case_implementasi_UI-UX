@@ -10,13 +10,11 @@
                 <h1 class="text-4xl font-bold text-gray-900">Expenses Management</h1>
                 <p class="text-gray-500 mt-1">Manage and track all company expenses in one place.</p>
             </div>
-
-            @if (in_array($role, ['owner', 'finance']))
-                <button @click="openModal = true"
-                    class="bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition flex items-center shadow-sm">
-                    <span class="mr-2 text-lg leading-none">+</span> New Expense
-                </button>
-            @endif
+            <button @click="openModal = true"
+                class="bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition flex items-center shadow-sm">
+                <x-icon name="plus" class="w-4 h-4 mr-2" />
+                <span>New Expense</span>
+            </button>
         </div>
 
         <!-- KPI Cards -->
@@ -27,7 +25,8 @@
                     <h3 class="text-2xl font-bold text-gray-900">Rp 28.500.000</h3>
                     <p class="text-xs text-green-500 font-medium mt-2">↑ 12% from last month</p>
                 </div>
-                <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600 text-lg">🧾
+                <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
+                    <x-icon name="receipt" class="w-5 h-5" />
                 </div>
             </div>
 
@@ -37,7 +36,8 @@
                     <h3 class="text-2xl font-bold text-gray-900">12</h3>
                     <p class="text-xs text-green-500 font-medium mt-2">↑ 33% from last month</p>
                 </div>
-                <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 text-lg">📄
+                <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                    <x-icon name="document" class="w-5 h-5" />
                 </div>
             </div>
 
@@ -48,7 +48,9 @@
                     <p class="text-xs text-gray-600 mt-1">Rp 12.000.000</p>
                     <p class="text-xs text-green-500 font-medium mt-1">↑ 42% of total expenses</p>
                 </div>
-                <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-red-600 text-lg">⏱️</div>
+                <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-red-600">
+                    <x-icon name="pie-chart" class="w-5 h-5" />
+                </div>
             </div>
 
             <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start justify-between">
@@ -57,7 +59,8 @@
                     <h3 class="text-2xl font-bold text-gray-900">Rp 8.500.000</h3>
                     <p class="text-xs text-green-500 font-medium mt-2">↑ 18% from last month</p>
                 </div>
-                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600 text-lg">📅
+                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
+                    <x-icon name="calendar" class="w-5 h-5" />
                 </div>
             </div>
         </div>
@@ -67,7 +70,8 @@
             <div class="relative flex-grow">
                 <input type="text" placeholder="Search expense name, category, or description..."
                     class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-purple-500">
-                <span class="absolute left-3 top-3 text-gray-400">🔍</span>
+                <x-icon name="search"
+                    class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
             <select
                 class="bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-600 focus:ring-2 focus:ring-purple-500 xl:w-48">
@@ -88,11 +92,13 @@
             <div class="relative xl:w-48">
                 <input type="text" placeholder="Select date range"
                     class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-500 focus:ring-2 focus:ring-purple-500">
-                <span class="absolute right-3 top-3 text-gray-400">📅</span>
+                <x-icon name="calendar"
+                    class="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
             <button
                 class="flex items-center justify-center px-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 xl:w-36">
-                <span class="mr-2">⚲</span> Clear Filter
+                <x-icon name="filter" class="w-4 h-4 mr-2" />
+                <span>Clear Filter</span>
             </button>
         </div>
 
@@ -114,204 +120,345 @@
                         </tr>
                     </thead>
                     <tbody class="text-sm text-gray-700">
+                        <!-- Baris 1 -->
                         <tr class="border-b border-gray-50 hover:bg-gray-50">
                             <td class="p-4">1</td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">01 Aug 2026</td>
                             <td class="p-4 font-medium text-gray-900">EXP-001</td>
                             <td class="p-4 text-gray-600">Office Rent</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Operational</span>
+                                    class="inline-flex justify-center items-center w-32 px-2.5 py-1 bg-purple-100 text-purple-700 rounded-md text-xs font-medium">Operational</span>
                             </td>
                             <td class="p-4 text-gray-900 whitespace-nowrap">Rp 5.000.000</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Paid</span>
+                                    class="inline-flex justify-center items-center w-24 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Paid</span>
                             </td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                @if (in_array($role, ['owner', 'finance']))
-                                    <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                    <button class="text-gray-400 hover:text-red-500">🗑️</button>
-                                @endif
-                            </td>
+                           <td class="p-4">
+    <div class="flex items-center justify-center gap-3">
+
+        <button type="button" title="View Expense"
+            class="text-blue-500 hover:text-blue-700 transition">
+            <x-icon name="eye" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Edit Expense"
+            class="text-amber-500 hover:text-amber-700 transition">
+            <x-icon name="edit" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Delete Expense"
+            class="text-red-500 hover:text-red-700 transition">
+            <x-icon name="trash" class="w-4 h-4" />
+        </button>
+
+    </div>
+</td>
                         </tr>
+                        <!-- Baris 2 -->
                         <tr class="border-b border-gray-50 hover:bg-gray-50">
                             <td class="p-4">2</td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">03 Aug 2026</td>
                             <td class="p-4 font-medium text-gray-900">EXP-002</td>
                             <td class="p-4 text-gray-600">Staff Salaries</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium">Salaries</span>
+                                    class="inline-flex justify-center items-center w-32 px-2.5 py-1 bg-red-100 text-red-700 rounded-md text-xs font-medium">Salaries</span>
                             </td>
                             <td class="p-4 text-gray-900 whitespace-nowrap">Rp 7.500.000</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Paid</span>
+                                    class="inline-flex justify-center items-center w-24 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Paid</span>
                             </td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                @if (in_array($role, ['owner', 'finance']))
-                                    <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                    <button class="text-gray-400 hover:text-red-500">🗑️</button>
-                                @endif
-                            </td>
+                            <td class="p-4">
+    <div class="flex items-center justify-center gap-3">
+
+        <button type="button" title="View Expense"
+            class="text-blue-500 hover:text-blue-700 transition">
+            <x-icon name="eye" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Edit Expense"
+            class="text-amber-500 hover:text-amber-700 transition">
+            <x-icon name="edit" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Delete Expense"
+            class="text-red-500 hover:text-red-700 transition">
+            <x-icon name="trash" class="w-4 h-4" />
+        </button>
+
+    </div>
+</td>
                         </tr>
+                        <!-- Baris 3 -->
                         <tr class="border-b border-gray-50 hover:bg-gray-50">
                             <td class="p-4">3</td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">05 Aug 2026</td>
                             <td class="p-4 font-medium text-gray-900">EXP-003</td>
                             <td class="p-4 text-gray-600">Figma Subscription</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">Software
+                                    class="inline-flex justify-center items-center w-32 px-2.5 py-1 bg-orange-100 text-orange-700 rounded-md text-xs font-medium">Software
                                     & Tools</span></td>
                             <td class="p-4 text-gray-900 whitespace-nowrap">Rp 350.000</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Paid</span>
+                                    class="inline-flex justify-center items-center w-24 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Paid</span>
                             </td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                @if (in_array($role, ['owner', 'finance']))
-                                    <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                    <button class="text-gray-400 hover:text-red-500">🗑️</button>
-                                @endif
-                            </td>
+                            <td class="p-4">
+    <div class="flex items-center justify-center gap-3">
+
+        <button type="button" title="View Expense"
+            class="text-blue-500 hover:text-blue-700 transition">
+            <x-icon name="eye" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Edit Expense"
+            class="text-amber-500 hover:text-amber-700 transition">
+            <x-icon name="edit" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Delete Expense"
+            class="text-red-500 hover:text-red-700 transition">
+            <x-icon name="trash" class="w-4 h-4" />
+        </button>
+
+    </div>
+</td>
                         </tr>
+                        <!-- Baris 4 -->
                         <tr class="border-b border-gray-50 hover:bg-gray-50">
                             <td class="p-4">4</td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">08 Aug 2026</td>
                             <td class="p-4 font-medium text-gray-900">EXP-004</td>
                             <td class="p-4 text-gray-600">Google Workspace</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">Software
+                                    class="inline-flex justify-center items-center w-32 px-2.5 py-1 bg-orange-100 text-orange-700 rounded-md text-xs font-medium">Software
                                     & Tools</span></td>
                             <td class="p-4 text-gray-900 whitespace-nowrap">Rp 750.000</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-medium">Pending</span>
+                                    class="inline-flex justify-center items-center w-24 px-2.5 py-1 bg-yellow-100 text-yellow-700 rounded-md text-xs font-medium">Pending</span>
                             </td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                @if (in_array($role, ['owner', 'finance']))
-                                    <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                    <button class="text-gray-400 hover:text-red-500">🗑️</button>
-                                @endif
-                            </td>
+                            <td class="p-4">
+    <div class="flex items-center justify-center gap-3">
+
+        <button type="button" title="View Expense"
+            class="text-blue-500 hover:text-blue-700 transition">
+            <x-icon name="eye" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Edit Expense"
+            class="text-amber-500 hover:text-amber-700 transition">
+            <x-icon name="edit" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Delete Expense"
+            class="text-red-500 hover:text-red-700 transition">
+            <x-icon name="trash" class="w-4 h-4" />
+        </button>
+
+    </div>
+</td>
                         </tr>
+                        <!-- Baris 5 -->
                         <tr class="border-b border-gray-50 hover:bg-gray-50">
                             <td class="p-4">5</td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">10 Aug 2026</td>
                             <td class="p-4 font-medium text-gray-900">EXP-005</td>
                             <td class="p-4 text-gray-600">Electricity Bill</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Utilities</span>
+                                    class="inline-flex justify-center items-center w-32 px-2.5 py-1 bg-blue-100 text-blue-700 rounded-md text-xs font-medium">Utilities</span>
                             </td>
                             <td class="p-4 text-gray-900 whitespace-nowrap">Rp 1.750.000</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Paid</span>
+                                    class="inline-flex justify-center items-center w-24 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Paid</span>
                             </td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                @if (in_array($role, ['owner', 'finance']))
-                                    <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                    <button class="text-gray-400 hover:text-red-500">🗑️</button>
-                                @endif
-                            </td>
+                            <td class="p-4">
+    <div class="flex items-center justify-center gap-3">
+
+        <button type="button" title="View Expense"
+            class="text-blue-500 hover:text-blue-700 transition">
+            <x-icon name="eye" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Edit Expense"
+            class="text-amber-500 hover:text-amber-700 transition">
+            <x-icon name="edit" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Delete Expense"
+            class="text-red-500 hover:text-red-700 transition">
+            <x-icon name="trash" class="w-4 h-4" />
+        </button>
+
+    </div>
+</td>
+                        </tr>
+                        <!-- Baris 6 -->
                         <tr class="border-b border-gray-50 hover:bg-gray-50">
                             <td class="p-4">6</td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">12 Aug 2026</td>
                             <td class="p-4 font-medium text-gray-900">EXP-006</td>
                             <td class="p-4 text-gray-600">Internet & Wifi</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Utilities</span>
+                                    class="inline-flex justify-center items-center w-32 px-2.5 py-1 bg-blue-100 text-blue-700 rounded-md text-xs font-medium">Utilities</span>
                             </td>
                             <td class="p-4 text-gray-900 whitespace-nowrap">Rp 750.000</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Paid</span>
+                                    class="inline-flex justify-center items-center w-24 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Paid</span>
                             </td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                @if (in_array($role, ['owner', 'finance']))
-                                    <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                    <button class="text-gray-400 hover:text-red-500">🗑️</button>
-                                @endif
-                            </td>
+                            <td class="p-4">
+    <div class="flex items-center justify-center gap-3">
+
+        <button type="button" title="View Expense"
+            class="text-blue-500 hover:text-blue-700 transition">
+            <x-icon name="eye" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Edit Expense"
+            class="text-amber-500 hover:text-amber-700 transition">
+            <x-icon name="edit" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Delete Expense"
+            class="text-red-500 hover:text-red-700 transition">
+            <x-icon name="trash" class="w-4 h-4" />
+        </button>
+
+    </div>
+</td>
                         </tr>
+                        <!-- Baris 7 -->
                         <tr class="border-b border-gray-50 hover:bg-gray-50">
                             <td class="p-4">7</td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">15 Aug 2026</td>
                             <td class="p-4 font-medium text-gray-900">EXP-007</td>
                             <td class="p-4 text-gray-600">Office Supplies</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Operational</span>
+                                    class="inline-flex justify-center items-center w-32 px-2.5 py-1 bg-purple-100 text-purple-700 rounded-md text-xs font-medium">Operational</span>
                             </td>
                             <td class="p-4 text-gray-900 whitespace-nowrap">Rp 1.500.000</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-medium">Pending</span>
+                                    class="inline-flex justify-center items-center w-24 px-2.5 py-1 bg-yellow-100 text-yellow-700 rounded-md text-xs font-medium">Pending</span>
                             </td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                @if (in_array($role, ['owner', 'finance']))
-                                    <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                    <button class="text-gray-400 hover:text-red-500">🗑️</button>
-                                @endif
-                            </td>
+                           <td class="p-4">
+    <div class="flex items-center justify-center gap-3">
+
+        <button type="button" title="View Expense"
+            class="text-blue-500 hover:text-blue-700 transition">
+            <x-icon name="eye" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Edit Expense"
+            class="text-amber-500 hover:text-amber-700 transition">
+            <x-icon name="edit" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Delete Expense"
+            class="text-red-500 hover:text-red-700 transition">
+            <x-icon name="trash" class="w-4 h-4" />
+        </button>
+
+    </div>
+</td>
                         </tr>
+                        <!-- Baris 8 -->
                         <tr class="border-b border-gray-50 hover:bg-gray-50">
                             <td class="p-4">8</td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">18 Aug 2026</td>
                             <td class="p-4 font-medium text-gray-900">EXP-008</td>
                             <td class="p-4 text-gray-600">Other Expenses</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Others</span>
+                                    class="inline-flex justify-center items-center w-32 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Others</span>
                             </td>
                             <td class="p-4 text-gray-900 whitespace-nowrap">Rp 2.500.000</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Paid</span>
+                                    class="inline-flex justify-center items-center w-24 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Paid</span>
                             </td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                @if (in_array($role, ['owner', 'finance']))
-                                    <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                    <button class="text-gray-400 hover:text-red-500">🗑️</button>
-                                @endif
-                            </td>
+                            <td class="p-4">
+    <div class="flex items-center justify-center gap-3">
+
+        <button type="button" title="View Expense"
+            class="text-blue-500 hover:text-blue-700 transition">
+            <x-icon name="eye" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Edit Expense"
+            class="text-amber-500 hover:text-amber-700 transition">
+            <x-icon name="edit" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Delete Expense"
+            class="text-red-500 hover:text-red-700 transition">
+            <x-icon name="trash" class="w-4 h-4" />
+        </button>
+
+    </div>
+</td>
                         </tr>
+                        <!-- Baris 9 -->
                         <tr class="border-b border-gray-50 hover:bg-gray-50">
                             <td class="p-4">9</td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">22 Aug 2026</td>
                             <td class="p-4 font-medium text-gray-900">EXP-009</td>
                             <td class="p-4 text-gray-600">Printer Maintenance</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Operational</span>
+                                    class="inline-flex justify-center items-center w-32 px-2.5 py-1 bg-purple-100 text-purple-700 rounded-md text-xs font-medium">Operational</span>
                             </td>
                             <td class="p-4 text-gray-900 whitespace-nowrap">Rp 750.000</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Paid</span>
+                                    class="inline-flex justify-center items-center w-24 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Paid</span>
                             </td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                @if (in_array($role, ['owner', 'finance']))
-                                    <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                    <button class="text-gray-400 hover:text-red-500">🗑️</button>
-                                @endif
-                            </td>
+                            <td class="p-4">
+    <div class="flex items-center justify-center gap-3">
+
+        <button type="button" title="View Expense"
+            class="text-blue-500 hover:text-blue-700 transition">
+            <x-icon name="eye" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Edit Expense"
+            class="text-amber-500 hover:text-amber-700 transition">
+            <x-icon name="edit" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Delete Expense"
+            class="text-red-500 hover:text-red-700 transition">
+            <x-icon name="trash" class="w-4 h-4" />
+        </button>
+
+    </div>
+</td>
                         </tr>
+                        <!-- Baris 10 -->
                         <tr class="border-b border-gray-50 hover:bg-gray-50">
                             <td class="p-4">10</td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">25 Aug 2026</td>
                             <td class="p-4 font-medium text-gray-900">EXP-010</td>
                             <td class="p-4 text-gray-600">Transportation</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Others</span>
+                                    class="inline-flex justify-center items-center w-32 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Others</span>
                             </td>
                             <td class="p-4 text-gray-900 whitespace-nowrap">Rp 650.000</td>
                             <td class="p-4"><span
-                                    class="px-2.5 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium">Cancelled</span>
+                                    class="inline-flex justify-center items-center w-24 px-2.5 py-1 bg-red-100 text-red-700 rounded-md text-xs font-medium">Cancelled</span>
                             </td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                @if (in_array($role, ['owner', 'finance']))
-                                    <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                    <button class="text-gray-400 hover:text-red-500">🗑️</button>
-                                @endif
-                            </td>
+                            <td class="p-4">
+    <div class="flex items-center justify-center gap-3">
+
+        <button type="button" title="View Expense"
+            class="text-blue-500 hover:text-blue-700 transition">
+            <x-icon name="eye" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Edit Expense"
+            class="text-amber-500 hover:text-amber-700 transition">
+            <x-icon name="edit" class="w-4 h-4" />
+        </button>
+
+        <button type="button" title="Delete Expense"
+            class="text-red-500 hover:text-red-700 transition">
+            <x-icon name="trash" class="w-4 h-4" />
+        </button>
+
+    </div>
+</td>
                         </tr>
                     </tbody>
                 </table>
@@ -328,12 +475,9 @@
                     <button
                         class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded-lg hover:bg-gray-50">2</button>
                     <button
-                        class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded-lg hover:bg-gray-50">3</button>
-                    <button
                         class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded-lg hover:bg-gray-50">&gt;</button>
                     <select class="ml-2 border-gray-200 rounded-lg text-sm py-1 pl-2 pr-6">
                         <option>10 / page</option>
-                        <option>20 / page</option>
                     </select>
                 </div>
             </div>
@@ -357,10 +501,10 @@
                     x-transition:leave="ease-in duration-200"
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl">
+                    class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl flex flex-col max-h-[90vh]">
 
                     <!-- Header Modal -->
-                    <div class="bg-white px-8 pt-6 pb-2 flex justify-between items-start">
+                    <div class="bg-white px-8 pt-6 pb-2 flex justify-between items-start flex-shrink-0">
                         <div>
                             <h3 class="text-xl font-bold text-gray-900">Create New Expense</h3>
                             <p class="text-sm text-gray-500 mt-1">Record and manage a new company expense.</p>
@@ -374,13 +518,13 @@
                     </div>
 
                     <!-- Body Modal (Form) -->
-                    <div class="bg-white px-8 py-4 space-y-6">
+                    <div class="bg-white px-8 py-4 space-y-6 overflow-y-auto flex-grow">
 
                         <!-- SECTION 1: Expense Information -->
                         <div>
                             <div
                                 class="flex items-center space-x-2 bg-purple-50 text-[#6D28D9] px-4 py-2.5 rounded-lg mb-5">
-                                <span class="text-lg">📄</span>
+                                <x-icon name="receipt" class="w-5 h-5" />
                                 <span class="font-bold text-sm">Expense Information</span>
                             </div>
 
@@ -394,8 +538,16 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Category <span
                                             class="text-red-500">*</span></label>
-                                    <input type="text" placeholder="e.g. Operational"
-                                        class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-[#6D28D9] focus:border-[#6D28D9]">
+                                    <select name="category" required
+    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-700 focus:ring-[#6D28D9] focus:border-[#6D28D9]">
+
+    <option value="" disabled selected>Select expense category</option>
+    <option value="Operational">Operational</option>
+    <option value="Salaries">Salaries</option>
+    <option value="Software & Tools">Software & Tools</option>
+    <option value="Utilities">Utilities</option>
+    <option value="Others">Others</option>
+</select>
                                 </div>
                             </div>
 
@@ -419,7 +571,7 @@
                         <div>
                             <div
                                 class="flex items-center space-x-2 bg-purple-50 text-[#6D28D9] px-4 py-2.5 rounded-lg mb-5">
-                                <span class="text-lg">📝</span>
+                               <x-icon name="document" class="w-5 h-5" />
                                 <span class="font-bold text-sm">Additional Information</span>
                             </div>
 
@@ -445,7 +597,8 @@
                     </div>
 
                     <!-- Footer Modal (Tombol Aksi) -->
-                    <div class="bg-gray-50 px-8 py-4 flex justify-end space-x-3 rounded-b-2xl border-t border-gray-200">
+                    <div
+                        class="bg-gray-50 px-8 py-4 flex justify-end space-x-3 rounded-b-2xl border-t border-gray-200 flex-shrink-0">
                         <button @click="openModal = false" type="button"
                             class="px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-gray-200">
                             Cancel

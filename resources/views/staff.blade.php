@@ -10,13 +10,11 @@
                 <h1 class="text-4xl font-bold text-gray-900">Staff Management</h1>
                 <p class="text-gray-500 mt-1">Manage company staff information.</p>
             </div>
-
-            @if (in_array($role, ['owner']))
-                <button @click="openModal = true"
-                    class="bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition flex items-center shadow-sm">
-                    <span class="mr-2 text-lg leading-none">+</span> Add Staff
-                </button>
-            @endif
+            <button @click="openModal = true"
+                class="bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition flex items-center shadow-sm">
+                <x-icon name="plus" class="w-4 h-4 mr-2" />
+                <span>Add Staff</span>
+            </button>
         </div>
 
         <!-- KPI Cards -->
@@ -26,7 +24,8 @@
                     <p class="text-sm font-medium text-gray-500 mb-1">Total Staff</p>
                     <h3 class="text-2xl font-bold text-gray-900">25</h3>
                 </div>
-                <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600 text-lg">👥
+                <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
+                    <x-icon name="users" class="w-5 h-5" />
                 </div>
             </div>
 
@@ -35,7 +34,8 @@
                     <p class="text-sm font-medium text-gray-500 mb-1">Active Staff</p>
                     <h3 class="text-2xl font-bold text-gray-900">22</h3>
                 </div>
-                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600 text-lg">👤
+                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
+                    <x-icon name="user-check" class="w-5 h-5" />
                 </div>
             </div>
 
@@ -44,7 +44,9 @@
                     <p class="text-sm font-medium text-gray-500 mb-1">Inactive Staff</p>
                     <h3 class="text-2xl font-bold text-gray-900">3</h3>
                 </div>
-                <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-red-600 text-lg">👤</div>
+                <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-red-600">
+                    <x-icon name="user-x" class="w-5 h-5" />
+                </div>
             </div>
 
             <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start justify-between">
@@ -52,7 +54,8 @@
                     <p class="text-sm font-medium text-gray-500 mb-1">Departments</p>
                     <h3 class="text-2xl font-bold text-gray-900">5</h3>
                 </div>
-                <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 text-lg">🏢
+                <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                    <x-icon name="building" class="w-5 h-5" />
                 </div>
             </div>
         </div>
@@ -62,7 +65,9 @@
             <div class="relative flex-grow">
                 <input type="text" placeholder="Search name, email, or department..."
                     class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-purple-500">
-                <span class="absolute left-3 top-3 text-gray-400">🔍</span>
+                <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                    <x-icon name="search" class="w-4 h-4" />
+                </div>
             </div>
             <select
                 class="bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-600 focus:ring-2 focus:ring-purple-500 xl:w-48">
@@ -82,11 +87,14 @@
             <div class="relative xl:w-48">
                 <input type="text" placeholder="Select date joined"
                     class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-500 focus:ring-2 focus:ring-purple-500">
-                <span class="absolute right-3 top-3 text-gray-400">📅</span>
+                <div class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                    <x-icon name="calendar" class="w-4 h-4" />
+                </div>
             </div>
             <button
                 class="flex items-center justify-center px-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 xl:w-36">
-                <span class="mr-2">⚲</span> Clear Filter
+                <x-icon name="filter" class="w-4 h-4 mr-2" />
+                <span>Clear Filter</span>
             </button>
         </div>
 
@@ -121,13 +129,28 @@
                             </td>
                             <td class="p-4 text-gray-600">Project Coordinator</td>
                             <td class="p-4"><span
-                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Active</span>
+                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Active</span>
                             </td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">02 Jan 2026</td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                <button class="text-gray-400 hover:text-red-500">🗑️</button>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-3">
+
+                                    <button type="button" title="View Staff"
+                                        class="text-blue-500 hover:text-blue-700 transition">
+                                        <x-icon name="eye" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Edit Staff"
+                                        class="text-amber-500 hover:text-amber-700 transition">
+                                        <x-icon name="edit" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Delete Staff"
+                                        class="text-red-500 hover:text-red-700 transition">
+                                        <x-icon name="trash" class="w-4 h-4" />
+                                    </button>
+
+                                </div>
                             </td>
                         </tr>
                         <!-- Baris 2 -->
@@ -143,13 +166,28 @@
                             </td>
                             <td class="p-4 text-gray-600">Project Coordinator</td>
                             <td class="p-4"><span
-                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Active</span>
+                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Active</span>
                             </td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">05 Jan 2026</td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                <button class="text-gray-400 hover:text-red-500">🗑️</button>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-3">
+
+                                    <button type="button" title="View Staff"
+                                        class="text-blue-500 hover:text-blue-700 transition">
+                                        <x-icon name="eye" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Edit Staff"
+                                        class="text-amber-500 hover:text-amber-700 transition">
+                                        <x-icon name="edit" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Delete Staff"
+                                        class="text-red-500 hover:text-red-700 transition">
+                                        <x-icon name="trash" class="w-4 h-4" />
+                                    </button>
+
+                                </div>
                             </td>
                         </tr>
                         <!-- Baris 3 -->
@@ -165,13 +203,28 @@
                             </td>
                             <td class="p-4 text-gray-600">Project Specialist</td>
                             <td class="p-4"><span
-                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Active</span>
+                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Active</span>
                             </td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">08 Jan 2026</td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                <button class="text-gray-400 hover:text-red-500">🗑️</button>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-3">
+
+                                    <button type="button" title="View Staff"
+                                        class="text-blue-500 hover:text-blue-700 transition">
+                                        <x-icon name="eye" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Edit Staff"
+                                        class="text-amber-500 hover:text-amber-700 transition">
+                                        <x-icon name="edit" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Delete Staff"
+                                        class="text-red-500 hover:text-red-700 transition">
+                                        <x-icon name="trash" class="w-4 h-4" />
+                                    </button>
+
+                                </div>
                             </td>
                         </tr>
                         <!-- Baris 4 -->
@@ -187,13 +240,28 @@
                             </td>
                             <td class="p-4 text-gray-600">Finance Officer</td>
                             <td class="p-4"><span
-                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Active</span>
+                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Active</span>
                             </td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">10 Jan 2026</td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                <button class="text-gray-400 hover:text-red-500">🗑️</button>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-3">
+
+                                    <button type="button" title="View Staff"
+                                        class="text-blue-500 hover:text-blue-700 transition">
+                                        <x-icon name="eye" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Edit Staff"
+                                        class="text-amber-500 hover:text-amber-700 transition">
+                                        <x-icon name="edit" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Delete Staff"
+                                        class="text-red-500 hover:text-red-700 transition">
+                                        <x-icon name="trash" class="w-4 h-4" />
+                                    </button>
+
+                                </div>
                             </td>
                         </tr>
                         <!-- Baris 5 -->
@@ -209,13 +277,28 @@
                             </td>
                             <td class="p-4 text-gray-600">HR Specialist</td>
                             <td class="p-4"><span
-                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Active</span>
+                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Active</span>
                             </td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">12 Jan 2026</td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                <button class="text-gray-400 hover:text-red-500">🗑️</button>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-3">
+
+                                    <button type="button" title="View Staff"
+                                        class="text-blue-500 hover:text-blue-700 transition">
+                                        <x-icon name="eye" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Edit Staff"
+                                        class="text-amber-500 hover:text-amber-700 transition">
+                                        <x-icon name="edit" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Delete Staff"
+                                        class="text-red-500 hover:text-red-700 transition">
+                                        <x-icon name="trash" class="w-4 h-4" />
+                                    </button>
+
+                                </div>
                             </td>
                         </tr>
                         <!-- Baris 6 -->
@@ -231,13 +314,28 @@
                             </td>
                             <td class="p-4 text-gray-600">Marketing Staff</td>
                             <td class="p-4"><span
-                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium">Inactive</span>
+                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-red-100 text-red-700 rounded-md text-xs font-medium">Inactive</span>
                             </td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">15 Jan 2026</td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                <button class="text-gray-400 hover:text-red-500">🗑️</button>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-3">
+
+                                    <button type="button" title="View Staff"
+                                        class="text-blue-500 hover:text-blue-700 transition">
+                                        <x-icon name="eye" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Edit Staff"
+                                        class="text-amber-500 hover:text-amber-700 transition">
+                                        <x-icon name="edit" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Delete Staff"
+                                        class="text-red-500 hover:text-red-700 transition">
+                                        <x-icon name="trash" class="w-4 h-4" />
+                                    </button>
+
+                                </div>
                             </td>
                         </tr>
                         <!-- Baris 7 -->
@@ -253,13 +351,28 @@
                             </td>
                             <td class="p-4 text-gray-600">IT Support</td>
                             <td class="p-4"><span
-                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Active</span>
+                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Active</span>
                             </td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">18 Jan 2026</td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                <button class="text-gray-400 hover:text-red-500">🗑️</button>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-3">
+
+                                    <button type="button" title="View Staff"
+                                        class="text-blue-500 hover:text-blue-700 transition">
+                                        <x-icon name="eye" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Edit Staff"
+                                        class="text-amber-500 hover:text-amber-700 transition">
+                                        <x-icon name="edit" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Delete Staff"
+                                        class="text-red-500 hover:text-red-700 transition">
+                                        <x-icon name="trash" class="w-4 h-4" />
+                                    </button>
+
+                                </div>
                             </td>
                         </tr>
                         <!-- Baris 8 -->
@@ -275,13 +388,28 @@
                             </td>
                             <td class="p-4 text-gray-600">Task Coordinator</td>
                             <td class="p-4"><span
-                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Active</span>
+                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Active</span>
                             </td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">20 Jan 2026</td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                <button class="text-gray-400 hover:text-red-500">🗑️</button>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-3">
+
+                                    <button type="button" title="View Staff"
+                                        class="text-blue-500 hover:text-blue-700 transition">
+                                        <x-icon name="eye" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Edit Staff"
+                                        class="text-amber-500 hover:text-amber-700 transition">
+                                        <x-icon name="edit" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Delete Staff"
+                                        class="text-red-500 hover:text-red-700 transition">
+                                        <x-icon name="trash" class="w-4 h-4" />
+                                    </button>
+
+                                </div>
                             </td>
                         </tr>
                         <!-- Baris 9 -->
@@ -297,13 +425,28 @@
                             </td>
                             <td class="p-4 text-gray-600">Accounting Staff</td>
                             <td class="p-4"><span
-                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Active</span>
+                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Active</span>
                             </td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">25 Jan 2026</td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                <button class="text-gray-400 hover:text-red-500">🗑️</button>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-3">
+
+                                    <button type="button" title="View Staff"
+                                        class="text-blue-500 hover:text-blue-700 transition">
+                                        <x-icon name="eye" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Edit Staff"
+                                        class="text-amber-500 hover:text-amber-700 transition">
+                                        <x-icon name="edit" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Delete Staff"
+                                        class="text-red-500 hover:text-red-700 transition">
+                                        <x-icon name="trash" class="w-4 h-4" />
+                                    </button>
+
+                                </div>
                             </td>
                         </tr>
                         <!-- Baris 10 -->
@@ -319,13 +462,28 @@
                             </td>
                             <td class="p-4 text-gray-600">Content Creator</td>
                             <td class="p-4"><span
-                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium">Inactive</span>
+                                    class="inline-flex justify-center items-center w-20 px-2.5 py-1 bg-red-100 text-red-700 rounded-md text-xs font-medium">Inactive</span>
                             </td>
                             <td class="p-4 text-gray-500 whitespace-nowrap">28 Jan 2026</td>
-                            <td class="p-4 flex justify-center space-x-2 text-lg">
-                                <button class="text-gray-400 hover:text-blue-500">👁️</button>
-                                <button class="text-gray-400 hover:text-orange-500">✏️</button>
-                                <button class="text-gray-400 hover:text-red-500">🗑️</button>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-3">
+
+                                    <button type="button" title="View Staff"
+                                        class="text-blue-500 hover:text-blue-700 transition">
+                                        <x-icon name="eye" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Edit Staff"
+                                        class="text-amber-500 hover:text-amber-700 transition">
+                                        <x-icon name="edit" class="w-4 h-4" />
+                                    </button>
+
+                                    <button type="button" title="Delete Staff"
+                                        class="text-red-500 hover:text-red-700 transition">
+                                        <x-icon name="trash" class="w-4 h-4" />
+                                    </button>
+
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -348,11 +506,11 @@
                         class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded-lg hover:bg-gray-50">&gt;</button>
                     <select class="ml-2 border-gray-200 rounded-lg text-sm py-1 pl-2 pr-6">
                         <option>10 / page</option>
-                        <option>20 / page</option>
                     </select>
                 </div>
             </div>
         </div>
+
         <!-- ================= MODAL ADD STAFF ================= -->
         <div x-show="openModal" style="display: none;" class="fixed inset-0 z-50 overflow-y-auto" role="dialog"
             aria-modal="true">
@@ -371,14 +529,13 @@
                     x-transition:leave="ease-in duration-200"
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
+                    class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl flex flex-col max-h-[90vh]">
 
                     <!-- Header Modal -->
-                    <div class="bg-white px-8 pt-6 pb-2 flex justify-between items-start">
+                    <div class="bg-white px-8 pt-6 pb-2 flex justify-between items-start flex-shrink-0">
                         <div>
                             <h3 class="text-xl font-bold text-gray-900">Add New Staff</h3>
-                            <p class="text-sm text-gray-500 mt-1">Assign an existing user to a department and positions.
-                            </p>
+                            <p class="text-sm text-gray-500 mt-1">Assign an existing user to a department and position.</p>
                         </div>
                         <button @click="openModal = false" class="text-gray-400 hover:text-gray-600 mt-1">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -389,13 +546,13 @@
                     </div>
 
                     <!-- Body Modal (Form) -->
-                    <div class="bg-white px-8 py-4 space-y-6 max-h-[75vh] overflow-y-auto">
+                    <div class="bg-white px-8 py-4 space-y-6 overflow-y-auto flex-grow">
 
                         <!-- SECTION 1: User Information -->
                         <div>
                             <div
                                 class="flex items-center space-x-2 bg-purple-50 text-[#6D28D9] px-4 py-2.5 rounded-lg mb-5">
-                                <span class="text-lg">👤</span>
+                                <x-icon name="user" class="w-5 h-5" />
                                 <span class="font-bold text-sm">User Information</span>
                             </div>
 
@@ -430,7 +587,7 @@
                         <div>
                             <div
                                 class="flex items-center space-x-2 bg-purple-50 text-[#6D28D9] px-4 py-2.5 rounded-lg mb-5">
-                                <span class="text-lg">🧑‍💼</span>
+                               <x-icon name="briefcase" class="w-5 h-5" />
                                 <span class="font-bold text-sm">Staff Details</span>
                             </div>
 
@@ -485,14 +642,14 @@
                     </div>
 
                     <!-- Footer Modal (Tombol Aksi) -->
-                    <div class="bg-gray-50 px-8 py-4 flex justify-end space-x-3 rounded-b-2xl border-t border-gray-200">
+                    <div
+                        class="bg-gray-50 px-8 py-4 flex justify-end space-x-3 rounded-b-2xl border-t border-gray-200 flex-shrink-0">
                         <button @click="openModal = false" type="button"
                             class="px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-gray-200">
                             Cancel
                         </button>
-                        <!-- Tombol Add Staff berwarna ungu pudar seperti di gambar (disabled state) -->
                         <button type="button"
-                            class="px-6 py-2.5 text-sm font-medium text-white bg-[#A78BFA] rounded-lg cursor-not-allowed">
+                            class="px-6 py-2.5 text-sm font-medium text-white bg-[#6D28D9] rounded-lg hover:bg-[#5B21B6] focus:ring-2 focus:ring-purple-500">
                             Add Staff
                         </button>
                     </div>

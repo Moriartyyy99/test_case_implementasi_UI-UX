@@ -32,21 +32,34 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'company_name' => ['required', 'string', 'max:255'], // <-- Validasi Company Name
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        // Logika menentukan role berdasarkan email yang didaftarkan
+        $role = 'owner'; // Default role
+        if (str_contains($request->email, 'manager')) {
+            $role = 'manager';
+        } elseif (str_contains($request->email, 'staff')) {
+            $role = 'staff';
+        } elseif (str_contains($request->email, 'finance')) {
+            $role = 'finance';
+        }
 
         $user = User::create([
             'name' => $request->name,
             'company_name' => $request->company_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $role, // <-- Simpan role ke database
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Redirect sesuai role masing-masing setelah register
+        return redirect(route('dashboard', ['role' => $role]));
     }
 }
